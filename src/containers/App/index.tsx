@@ -1,17 +1,21 @@
-import React from 'react';
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-// import { store } from "src/redux/store";
+import { store } from "src/redux/store";
+import { ChakraProvider } from "@chakra-ui/react"
 import AppRoutes from 'src/routes';
-// import "./App.css"
+import theme from 'src/themes';
+import ToggleTheme from 'src/components/Commons/ToggleTheme';
 
 const App = () => {
   return <>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
         <BrowserRouter>
-          <AppRoutes />
+          <ChakraProvider theme={theme}>
+            <AppRoutes />
+            <ToggleTheme />
+          </ChakraProvider>
         </BrowserRouter>
-    {/* </Provider> */}
+    </Provider>
   </>
 }
 
