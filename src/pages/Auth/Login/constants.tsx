@@ -14,7 +14,7 @@ export const handleValidation = () => {
   });
 };
 
-export const initialValues = { email: "ronald.cifuentes2020@gmail.com", password: "jjjjjjjjj" };
+export const initialValues = { email: "", password: "" };
 export const handleLoginWithEmail = (formValue: AuthForm) => AppDispatch(loginWithEmail(formValue));
 export const handleLoginWithGoogle = () => AppDispatch(loginWithGoogle());
 export const handleLoginWithTwitter = () => AppDispatch(loginWithTwitter());
