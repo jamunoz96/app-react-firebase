@@ -5,7 +5,6 @@ import Home from 'src/pages/Home';
 import Private from "./middlewares/Private";
 import Public from "./middlewares/Public";
 
-
 const AppRoutes = () => {
     return <>
         <Routes>
@@ -24,7 +23,7 @@ const AppRoutes = () => {
                     <Register />
                 </Public>
             } />
-            <Route path="/*" element={ <Navigate to="/" />} />
+            <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
     </>;
 }

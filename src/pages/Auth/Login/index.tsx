@@ -24,8 +24,10 @@ const Login = () => {
     }
   }, [errorMessage]);
 
-  if(isLoading) return <Loading />
-  return <FormLogin />
+  if(isLoading)
+    return <Loading />
+  else
+    return <FormLogin />
 
 };
 

@@ -1,7 +1,6 @@
-import { ReactNode } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { ReactChild } from "react";
 
-export type PropsFileUpload = {
-    register: UseFormRegisterReturn
-    children?: ReactNode
-}
+export type PropsFileUpload = { 
+    setImages: Function;
+    children: ReactChild
+  }

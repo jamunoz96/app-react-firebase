@@ -24,8 +24,10 @@ const Register = () => {
     }
   }, [errorMessage]);
 
-  if(isLoading) return <Loading />
-  return <FormRegister />
+  if(isLoading)
+    return <Loading />
+  else
+    return <FormRegister />
 
 };
 

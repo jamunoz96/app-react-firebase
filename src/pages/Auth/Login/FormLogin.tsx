@@ -18,22 +18,13 @@ import {
 } from "@chakra-ui/react";
 import { FaTwitter, FaGoogle } from "react-icons/fa";
 import { Formik, Field, Form } from "formik";
-import { CFaLock, CFaUserAlt, handleValidation } from "./constants";
-
-import { loginWithEmail, loginWithGoogle, loginWithTwitter } from "src/redux/actions/AuthActions";
-import { AppDispatch } from "src/redux/utils/AppDispatch";
-import { AuthForm } from "src/types/AuthForm";
-import { CustomLink } from "src/themes/Custo Link";
+import { CFaLock, CFaUserAlt, handleLoginWithEmail, handleLoginWithGoogle, handleLoginWithTwitter, handleValidation, initialValues } from "./constants";
+import { CustomLink } from "src/themes/CustomLink";
 
 
 const FormLogin = () => {
 
-  const initialValues = { email: "ronald.cifuentes2020@gmail.com", password: "jjjjjjjjj" };
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleLoginWithEmail = (formValue: AuthForm) => AppDispatch(loginWithEmail(formValue));
-  const handleLoginWithGoogle = () => AppDispatch(loginWithGoogle());
-  const handleLoginWithTwitter = () => AppDispatch(loginWithTwitter());
 
   return (
     <Fade in={true}>
@@ -54,14 +45,11 @@ const FormLogin = () => {
           <Heading color="teal.400">Sign In</Heading>
 
           <Box minW="md" >
-
             <Formik
               initialValues={initialValues}
               onSubmit={handleLoginWithEmail}
               validationSchema={handleValidation} >
-
               <Form>
-
                 <Stack
                   spacing={4}
                   p="1rem"
@@ -102,7 +90,6 @@ const FormLogin = () => {
                     )}
                   </Field>
 
-
                   <Button
                     type="submit"
                     variant="solid"
@@ -131,7 +118,7 @@ const FormLogin = () => {
 
         <Box mt="10">
           New to us?
-          <CustomLink ms="4" color="teal.500" href="#" to="/auth/register">
+          <CustomLink ms="4" color="teal.500" to="/auth/register">
             Sign Up
           </CustomLink>
         </Box>

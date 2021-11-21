@@ -15,20 +15,13 @@ import {
     Fade
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
-import { CFaLock, CFaUserAlt, handleValidation } from "./constants";
-
-import { AppDispatch } from "src/redux/utils/AppDispatch";
-import { AuthForm } from "src/types/AuthForm";
-import { register } from "src/redux/actions/AuthActions";
-import { CustomLink } from "src/themes/Custo Link";
+import { CFaLock, CFaUserAlt, handleRegister, handleValidation, initialValues } from "./constants";
+import { CustomLink } from "src/themes/CustomLink";
 
 
 const FormRegister = () => {
 
-    const initialValues = { email: "ronald.cifuentes2020@gmail.com", password: "jjjjjjjjj" };
     const [showPassword, setShowPassword] = useState(false);
-
-    const handleRegister = (formValue: AuthForm) => AppDispatch(register(formValue));
 
     return <>
         <Fade in={true}>
@@ -38,7 +31,6 @@ const FormRegister = () => {
                 height="100vh"
                 justifyContent="center"
                 alignItems="center" >
-
                 <Stack
                     flexDir="column"
                     mb="2"
@@ -53,9 +45,7 @@ const FormRegister = () => {
                             initialValues={initialValues}
                             onSubmit={handleRegister}
                             validationSchema={handleValidation} >
-
                             <Form>
-
                                 <Stack
                                     spacing={4}
                                     p="1rem"
@@ -112,7 +102,7 @@ const FormRegister = () => {
                 </Stack>
 
                 <Box>
-                    <CustomLink ms="4" color="teal.500" href="#" to="/auth/login">
+                    <CustomLink ms="4" color="teal.500" to="/auth/login">
                         Sign In
                     </CustomLink>
                 </Box>

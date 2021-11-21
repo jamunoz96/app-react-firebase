@@ -70,7 +70,6 @@ const FormProduct = ({ onClose } : PropsFormProduct) => {
     }, [errorMessage, saved, isLoading]);
 
     return <>
-
             <Stack
                 mb="2"
                 mt="10%"

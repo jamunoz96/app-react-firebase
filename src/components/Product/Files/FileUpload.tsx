@@ -1,9 +1,10 @@
 
-import { ChangeEvent, ReactNode, useRef } from 'react'
+import { ChangeEvent, useRef } from 'react'
 import { InputGroup, Input, useToast, Box, Button, Icon } from '@chakra-ui/react'
 import { FiFile } from 'react-icons/fi';
+import { PropsFileUpload } from 'src/types/PropsFileUpload';
 
-const FileUpload = ({ setImages, children }: { setImages: Function, children: ReactNode }) => {
+const FileUpload = ({ setImages, children }: PropsFileUpload) => {
 
   const toast = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
