@@ -22,7 +22,7 @@ import { CFaLock, CFaUserAlt, handleValidation } from "./constants";
 
 import { loginWithEmail, loginWithGoogle, loginWithTwitter } from "src/redux/actions/AuthActions";
 import { AppDispatch } from "src/redux/utils/AppDispatch";
-import { AuthLogin } from "src/types/AuthLogin";
+import { AuthForm } from "src/types/AuthForm";
 import { CustomLink } from "src/themes/Custo Link";
 
 
@@ -31,7 +31,7 @@ const FormLogin = () => {
   const initialValues = { email: "ronald.cifuentes2020@gmail.com", password: "jjjjjjjjj" };
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLoginWithEmail = (formValue: AuthLogin) => AppDispatch(loginWithEmail(formValue));
+  const handleLoginWithEmail = (formValue: AuthForm) => AppDispatch(loginWithEmail(formValue));
   const handleLoginWithGoogle = () => AppDispatch(loginWithGoogle());
   const handleLoginWithTwitter = () => AppDispatch(loginWithTwitter());
 

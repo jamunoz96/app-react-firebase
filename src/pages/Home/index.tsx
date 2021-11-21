@@ -1,4 +1,4 @@
-import { Drawer, DrawerContent, useDisclosure, Button, DrawerCloseButton, Stack } from "@chakra-ui/react";
+import { Drawer, DrawerContent, useDisclosure, DrawerCloseButton, Stack } from "@chakra-ui/react";
 import Logout from "src/components/Commons/Logout";
 import FormProduct from "src/components/Product/Form";
 import ListProduct from "src/components/Product/List";

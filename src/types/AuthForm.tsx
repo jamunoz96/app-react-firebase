@@ -1,4 +1,4 @@
-export type AuthLogin = {
+export type AuthForm = {
     email: string;
     password: string;
 }

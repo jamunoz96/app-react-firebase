@@ -18,7 +18,7 @@ import { Formik, Field, Form } from "formik";
 import { CFaLock, CFaUserAlt, handleValidation } from "./constants";
 
 import { AppDispatch } from "src/redux/utils/AppDispatch";
-import { AuthLogin } from "src/types/AuthLogin";
+import { AuthForm } from "src/types/AuthForm";
 import { register } from "src/redux/actions/AuthActions";
 import { CustomLink } from "src/themes/Custo Link";
 
@@ -28,7 +28,7 @@ const FormRegister = () => {
     const initialValues = { email: "ronald.cifuentes2020@gmail.com", password: "jjjjjjjjj" };
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleRegister = (formValue: AuthLogin) => AppDispatch(register(formValue));
+    const handleRegister = (formValue: AuthForm) => AppDispatch(register(formValue));
 
     return <>
         <Fade in={true}>

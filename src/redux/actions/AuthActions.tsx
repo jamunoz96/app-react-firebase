@@ -1,7 +1,7 @@
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, signOut, UserCredential } from "@firebase/auth";
 import { auth, providerGoogle, providerTwitter } from "src/services/Firebase/providers";
-import { AuthLogin } from "src/types/AuthLogin";
+import { AuthForm } from "src/types/AuthForm";
 import { LOADING, AUTH_SUCCESS, AUTH_FAILED, AUTH_LOGOUT } from "../reducers/AuthReducers";
 import { AppDispatchType } from "../types/AppDispatchType";
 
@@ -25,7 +25,7 @@ const _LOADING = () => ({
     payload: {data: null, error: null}
 });
 
-export const register = (form : AuthLogin) => (dispatch: AppDispatchType) => {
+export const register = (form : AuthForm) => (dispatch: AppDispatchType) => {
     dispatch(_LOADING());
     createUserWithEmailAndPassword(auth, form.email, form.password)
         .then((result : UserCredential) => {
@@ -36,7 +36,7 @@ export const register = (form : AuthLogin) => (dispatch: AppDispatchType) => {
         })
 };
 
-export const loginWithEmail = (form : AuthLogin) => (dispatch: AppDispatchType) => {
+export const loginWithEmail = (form : AuthForm) => (dispatch: AppDispatchType) => {
     dispatch(_LOADING());
     signInWithEmailAndPassword(auth, form.email, form.password)
         .then((result : UserCredential) => {

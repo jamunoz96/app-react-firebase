@@ -25,7 +25,7 @@ const initialState : ProductType = {
 };
 
 const ProductReducer = (state = initialState, action: AppActionType ) : ProductType   => {
-
+    let currentProducts = [];
     switch(action.type) {
         case LOADING:
             return {
@@ -35,6 +35,8 @@ const ProductReducer = (state = initialState, action: AppActionType ) : ProductT
                 saved: "P"
             }
         case PRODUCT_SUCCESS:
+            console.log("ok ", action.payload.data)
+            console.log("ok ", JSON.stringify(action.payload.data))
             localStorage.setItem("products", JSON.stringify(action.payload.data));
             return {
                 ...state,
@@ -44,7 +46,7 @@ const ProductReducer = (state = initialState, action: AppActionType ) : ProductT
                 errorMessage: null
             }
         case PRODUCT_SAVE:
-            let currentProducts = [...state.products, action.payload.data];
+            currentProducts = [...state.products, action.payload.data];
             localStorage.setItem("products", JSON.stringify(currentProducts));
             return {
                 ...state,
