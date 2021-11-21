@@ -36,7 +36,7 @@ export const firebaseGetImagesProduct = (products: Product[]): Promise<Product[]
                         getDownloadURL(itemRef)
                             .then((url) => {
                                 product.images?.push(url)
-                                if(res.items.length == index+1) downloads++;
+                                if(res.items.length === index+1) downloads++;
                                 if (downloads === products.length) resolve(products)
                             })
                         });
