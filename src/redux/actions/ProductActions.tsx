@@ -1,6 +1,6 @@
 
 import { QueryDocumentSnapshot, QuerySnapshot } from "@firebase/firestore";
-import { firebaseGetProducts, firebaseSaveProduct } from "src/services/Product";
+import { firebaseGetProducts, firebaseSaveProduct, firebaseUploadImagesProduct } from "src/services/Product";
 import { Product } from "src/types/Product";
 import { LOADING, PRODUCT_SUCCESS, PRODUCT_FAILED, PRODUCT_SAVE } from "../reducers/ProductReducers";
 import { AppDispatchType } from "../types/AppDispatchType";
@@ -43,11 +43,16 @@ export const loadProducts = () => (dispatch: AppDispatchType) => {
     
 };
 
-export const saveProduct = (product : Product) => (dispatch: AppDispatchType) => {
-    dispatch(_LOADING());
+
+export const saveProduct = (product : Product, images: any[]) => (dispatch: AppDispatchType) => {
+    // dispatch(_LOADING());
     firebaseSaveProduct(product)
         .then((result : any) => {
-            dispatch(_PRODUCT_SAVE({...product, id: result.id}));
+            firebaseUploadImagesProduct(result.id, images)
+                .then(() => {
+                    console.log("se subieron todas las imagenes")
+                })
+            // dispatch(_PRODUCT_SAVE({...product, id: result.id}));
         })
         .catch(err => {
             dispatch(_PRODUCT_FAILED(err.message));

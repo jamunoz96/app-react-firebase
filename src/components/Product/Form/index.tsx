@@ -23,28 +23,30 @@ import { saveProduct } from "src/redux/actions/ProductActions";
 import FileUpload from "../Files/FileUpload";
 import FileCover from "../Files/FileCover";
 import { Product } from "src/types/Product";
+import { PropsFormProduct } from "src/types/PropsFormProduct";
 
 
-const FormProduct = () => {
+const FormProduct = ({ onClose } : PropsFormProduct) => {
 
     const toast = useToast();
     const { isLoading, errorMessage, saved }: ProductType = useSelector((state: AppStateType) => state.product);
     const [images, setImages] = useState([]);
     const handleSave = (product: Product) => {
         if(images.length !== 3){
-            return toast({
+            toast({
                 title: "¡Upps.",
                 description: "You must load the 3 images to continue.",
                 status: "warning",
                 duration: 6000,
                 isClosable: true,
             })
+        } else {
+            AppDispatch(saveProduct(product, images));
         }
-        AppDispatch(saveProduct({...product, images: images}));
     }
 
     useEffect(() => {
-        if (errorMessage && saved == "N") {
+        if (errorMessage && saved === "N") {
             toast({
                 title: "¡Upps.",
                 description: "There was a problem saving the product.",
@@ -53,7 +55,19 @@ const FormProduct = () => {
                 isClosable: true,
             })
         }
-    }, [errorMessage, saved]);
+
+        if(saved === "Y" && !isLoading) {
+            onClose();
+            toast({
+                title: "Saved Product.",
+                description: "Successful process.",
+                status: "success",
+                duration: 6000,
+                isClosable: true,
+            })
+        }
+
+    }, [errorMessage, saved, isLoading]);
 
     return <>
 
@@ -124,7 +138,10 @@ const FormProduct = () => {
 
                                     <Button
                                         type="button"
-                                        onClick={() => setValues(initialValues)}
+                                        onClick={() => {
+                                            setValues(initialValues);
+                                            setImages([])
+                                        }}
                                         disabled={isLoading}
                                         width="full" >
                                         Reset

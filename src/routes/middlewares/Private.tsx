@@ -1,4 +1,4 @@
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AuthType } from "src/redux/types/AuthType";
 import { AppStateType } from "src/redux/types/AppStateType";

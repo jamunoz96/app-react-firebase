@@ -1,12 +1,16 @@
-import { Table, Tbody, Td, Th, Thead, Tr, Box, Heading, Skeleton } from "@chakra-ui/react"
+import { Table, Tbody, Td, Th, Thead, Tr, Box, Heading, Skeleton, Button, Text } from "@chakra-ui/react"
 import { useProduct } from "src/redux/hooks/useProduct";
 import { Product } from "src/types/Product";
+import { PropsListProduct } from "src/types/PropsListProduct";
 
-const ListProduct = () => {
+const ListProduct = ({ onOpen }: PropsListProduct) => {
     const { isLoading, errorMessage, products } = useProduct();
     return <>
         <Box mt="5%" pl="20" pr="20" >
-            <Heading mb="5" color="teal.500">Product List</Heading>
+            <Heading mb="5" color="teal.500">
+                Product List
+                <Button m={4} onClick={onOpen} > Add Product </Button>
+            </Heading>
             <Table variant="simple">
                 <Thead >
                     <Tr bg="gray.200" >
@@ -16,17 +20,17 @@ const ListProduct = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    { isLoading ?
+                    {isLoading ?
                         <Tr>
                             <Td p="0" colSpan={3}>
                                 <Skeleton mt="2" height="20px" />
                                 <Skeleton mt="2" height="20px" />
                                 <Skeleton mt="2" height="20px" />
                             </Td>
-                        </Tr>  : null 
+                        </Tr> : null
                     }
 
-                    { !isLoading && !errorMessage && products.length ? 
+                    {!isLoading && !errorMessage && products.length ?
                         products.map((product: Product) => {
                             return <Tr key={product.id}>
                                 <Td>{product.name}</Td>
@@ -34,6 +38,14 @@ const ListProduct = () => {
                                 <Td isNumeric>{product.price}</Td>
                             </Tr>
                         }) : null
+                    }
+
+                    {!isLoading && !errorMessage && !products.length ?
+                        <Tr>
+                            <Td p="5" colSpan={3}>
+                                <Text align="center">0 Products</Text>
+                            </Td>
+                        </Tr> : null
                     }
                 </Tbody>
             </Table>

@@ -35,7 +35,7 @@ const FileUpload = ({ setImages, children }: { setImages: Function, children: Re
           isClosable: true,
         })
       }
-      images.push({ cover: URL.createObjectURL(file), name: file.name })
+      images.push({ cover: URL.createObjectURL(file), name: file.name, file: file })
     }
     setImages(images)
   }
