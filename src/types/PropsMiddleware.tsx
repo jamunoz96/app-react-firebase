@@ -1,4 +1,4 @@
 
 export type PropsMiddleware = {
-    children: any
+    children: JSX.Element
 }

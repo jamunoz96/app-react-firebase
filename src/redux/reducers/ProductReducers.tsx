@@ -35,8 +35,6 @@ const ProductReducer = (state = initialState, action: AppActionType ) : ProductT
                 saved: "P"
             }
         case PRODUCT_SUCCESS:
-            console.log("ok ", action.payload.data)
-            console.log("ok ", JSON.stringify(action.payload.data))
             localStorage.setItem("products", JSON.stringify(action.payload.data));
             return {
                 ...state,

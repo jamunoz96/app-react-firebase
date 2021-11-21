@@ -6,6 +6,7 @@ import Private from "./middlewares/Private";
 import Public from "./middlewares/Public";
 
 const AppRoutes = () => {
+
     return <>
         <Routes>
             <Route path="/" element={

@@ -7,6 +7,7 @@ export const LOADING = 'auth/LOADING';
 export const AUTH_SUCCESS = 'auth/AUTH_SUCCESS';
 export const AUTH_FAILED = 'auth/AUTH_FAILED';
 export const AUTH_LOGOUT = 'auth/AUTH_LOGOUT';
+export const CLEAR_MESSAGES = 'auth/CLEAR_MESSAGES';
 
 const userHydrate = () : any => {
     const user : string | null = localStorage.getItem("auth_user");
@@ -37,6 +38,11 @@ const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   
                 isLoading: true,
                 isLoaded: false,
                 user: null
+            }
+        case CLEAR_MESSAGES:
+            return {
+                ...state,
+                errorMessage: null
             }
         case AUTH_SUCCESS:
             localStorage.setItem("auth_user", JSON.stringify(action.payload.data));

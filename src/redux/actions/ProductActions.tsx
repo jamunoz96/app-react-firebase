@@ -69,3 +69,4 @@ export const saveProduct = (product: Product, images: any[]) => (dispatch: AppDi
             dispatch(_PRODUCT_FAILED(err.message));
         })
 };
+

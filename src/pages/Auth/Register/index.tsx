@@ -6,6 +6,8 @@ import FormRegister from "./FormRegister";
 import { useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { getErrorFirebase } from "src/utils/getErrorFirebase";
+import { AppDispatch } from "src/redux/utils/AppDispatch";
+import { clearMessages } from "src/redux/actions/AuthActions";
 
 const Register = () => {
   const toast = useToast();
@@ -21,6 +23,7 @@ const Register = () => {
         duration: 6000,
         isClosable: true,
       })
+      AppDispatch(clearMessages())
     }
   }, [errorMessage]);
 

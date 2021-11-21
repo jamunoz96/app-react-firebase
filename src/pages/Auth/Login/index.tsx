@@ -6,12 +6,15 @@ import FormLogin from "./FormLogin";
 import { useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { getErrorFirebase } from "src/utils/getErrorFirebase";
+import { AppDispatch } from "src/redux/utils/AppDispatch";
+import { clearMessages } from "src/redux/actions/AuthActions";
 
 const Login = () => {
   const toast = useToast();
   const { isLoading, errorMessage } : AuthType = useSelector((state: AppStateType) => state.auth);
   
   useEffect(() => {
+    console.log(errorMessage)
     if(errorMessage) {
       let message = getErrorFirebase(errorMessage);
       toast({
@@ -21,6 +24,7 @@ const Login = () => {
         duration: 6000,
         isClosable: true,
       })
+      AppDispatch(clearMessages())
     }
   }, [errorMessage]);
 
