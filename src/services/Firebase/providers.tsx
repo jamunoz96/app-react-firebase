@@ -5,7 +5,7 @@ import app from ".";
 
 export const auth = getAuth(app)
 export const providerGoogle = new GoogleAuthProvider();
-export const providerTwitter = new GithubAuthProvider();
+export const providerGithub = new GithubAuthProvider();
 
 getRedirectResult(auth)
   .then((result: UserCredential | null) => {

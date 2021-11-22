@@ -1,6 +1,6 @@
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, signOut, UserCredential } from "@firebase/auth";
-import { auth, providerGoogle, providerTwitter } from "src/services/Firebase/providers";
+import { auth, providerGoogle, providerGithub } from "src/services/Firebase/providers";
 import { AuthForm } from "src/types/AuthForm";
 import { LOADING, AUTH_SUCCESS, AUTH_FAILED, AUTH_LOGOUT, CLEAR_MESSAGES } from "../reducers/AuthReducers";
 import { AppDispatchType } from "../types/AppDispatchType";
@@ -57,9 +57,9 @@ export const loginWithGoogle = () => (dispatch: AppDispatchType) => {
     signInWithRedirect(auth, providerGoogle)
 };
 
-export const loginWithTwitter = () => (dispatch: AppDispatchType) => {
+export const loginWithGithub = () => (dispatch: AppDispatchType) => {
     dispatch(_LOADING());
-    signInWithRedirect(auth, providerTwitter)
+    signInWithRedirect(auth, providerGithub)
 };
 
 export const setAuthSuccess = (user : any) => (dispatch: AppDispatchType) => {

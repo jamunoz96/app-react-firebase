@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Formik, Field, Form } from "formik";
-import { CFaLock, CFaUserAlt, handleLoginWithEmail, handleLoginWithGoogle, handleLoginWithTwitter, handleValidation, initialValues } from "./constants";
+import { CFaLock, CFaUserAlt, handleLoginWithEmail, handleLoginWithGoogle, handleLoginWithGithub, handleValidation, initialValues } from "./constants";
 import { CustomLink } from "src/themes/CustomLink";
 
 
@@ -105,7 +105,7 @@ const FormLogin = () => {
                     <Button type="button" onClick={handleLoginWithGoogle} width="full" leftIcon={<FaGoogle />}>
                       Google
                     </Button>
-                    <Button type="button" onClick={handleLoginWithTwitter} width="full" leftIcon={<FaGithub />}>
+                    <Button type="button" onClick={handleLoginWithGithub} width="full" leftIcon={<FaGithub />}>
                       GitHub
                     </Button>
                   </HStack>

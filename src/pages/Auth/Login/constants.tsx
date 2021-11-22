@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { AuthForm } from "src/types/AuthForm";
 import { AppDispatch } from "src/redux/utils/AppDispatch";
-import { loginWithEmail, loginWithGoogle, loginWithTwitter } from "src/redux/actions/AuthActions";
+import { loginWithEmail, loginWithGoogle, loginWithGithub } from "src/redux/actions/AuthActions";
 
 export const CFaUserAlt = chakra(FaUserAlt);
 export const CFaLock = chakra(FaLock);
@@ -17,4 +17,4 @@ export const handleValidation = () => {
 export const initialValues = { email: "", password: "" };
 export const handleLoginWithEmail = (formValue: AuthForm) => AppDispatch(loginWithEmail(formValue));
 export const handleLoginWithGoogle = () => AppDispatch(loginWithGoogle());
-export const handleLoginWithTwitter = () => AppDispatch(loginWithTwitter());
+export const handleLoginWithGithub = () => AppDispatch(loginWithGithub());
