@@ -9,10 +9,10 @@ export const providerGithub = new GithubAuthProvider();
 
 getRedirectResult(auth)
   .then((result: UserCredential | null) => {
-    if(result) {
+    if(result)
       AppDispatch(setAuthSuccess(result.user));
-    }
+    else
+      throw new Error("Firebase: Error (auth/incomplete)");
   }).catch((error) => {
-    console.log(error.message)
     AppDispatch(setAuthFailed(error.message));
   });
