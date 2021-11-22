@@ -13,6 +13,5 @@ getRedirectResult(auth)
       AppDispatch(setAuthSuccess(result.user));
     }
   }).catch((error) => {
-    console.log("falla", error.message)
     AppDispatch(setAuthFailed(error.message));
   });

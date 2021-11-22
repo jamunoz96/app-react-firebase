@@ -14,7 +14,6 @@ const Login = () => {
   const { isLoading, errorMessage } : AuthType = useSelector((state: AppStateType) => state.auth);
   
   useEffect(() => {
-    console.log(errorMessage)
     if(errorMessage) {
       let message = getErrorFirebase(errorMessage);
       toast({
