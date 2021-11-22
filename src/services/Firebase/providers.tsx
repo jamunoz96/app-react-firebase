@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, GithubAuthProvider, getAuth, getRedirectResult, UserCredential } from "firebase/auth";
 import { setAuthFailed, setAuthSuccess } from "src/redux/actions/AuthActions";
 import { AppDispatch } from "src/redux/utils/AppDispatch";
+import { getLoading } from "src/utils/getLoading";
 import app from ".";
 
 export const auth = getAuth(app)
@@ -11,7 +12,7 @@ getRedirectResult(auth)
   .then((result: UserCredential | null) => {
     if(result)
       AppDispatch(setAuthSuccess(result.user));
-    else
+    else if(getLoading())
       throw new Error("Firebase: Error (auth/incomplete)");
   }).catch((error) => {
     AppDispatch(setAuthFailed(error.message));
