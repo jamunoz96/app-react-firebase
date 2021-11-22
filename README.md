@@ -4,4 +4,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Demo
 
-https://app-react-firebase-5rc9gb2zn-jamunoz96.vercel.app/auth/login
+https://app-react-firebase.vercel.app/
