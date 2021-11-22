@@ -1,5 +1,7 @@
 
 
+import { getLoading } from "src/utils/getLoading";
+import { getInfoAuth } from "src/utils/getInfoAuth";
 import { AppActionType } from "../types/AppActionType";
 import { AuthType } from "../types/AuthType";
 
@@ -9,17 +11,8 @@ export const AUTH_FAILED = 'auth/AUTH_FAILED';
 export const AUTH_LOGOUT = 'auth/AUTH_LOGOUT';
 export const CLEAR_MESSAGES = 'auth/CLEAR_MESSAGES';
 
-const userHydrate = () : any => {
-    const user : string | null = localStorage.getItem("auth_user");
-    if(user) return JSON.parse(user);
-    else return null;
-};
-
-const loadingHydrate = () : boolean => {
-    const loading : string | null = localStorage.getItem("auth_loading");
-    if(loading) return JSON.parse(loading);
-    else return false;
-};
+const userHydrate = () : any => getInfoAuth();
+const loadingHydrate = () : boolean => getLoading();
 
 const initialState : AuthType = {
   user: userHydrate(),

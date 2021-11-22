@@ -10,7 +10,7 @@ import { PropsListProduct } from "src/types/PropsListProduct";
 const ListProduct = ({ onOpen }: PropsListProduct) => {
     const { isLoading, errorMessage, products } = useProduct();
     return <>
-        <Box mt="5%" pl="20" pr="20" >
+        <Box mt="40" ml="4%" mr="4%" minW="md" >
             <Heading mb="5" color="teal.500">
                 Product List
                 <Button m={4} onClick={onOpen} > Add Product </Button>
