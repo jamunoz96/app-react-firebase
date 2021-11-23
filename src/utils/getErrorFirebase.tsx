@@ -1,6 +1,6 @@
 const USER_NOT_FOUND = "Firebase: Error (auth/user-not-found).";
 const EMAIL_IN_USE = "Firebase: Error (auth/email-already-in-use).";
-const USER_EXIST_WITH_OTHER_ACCOUNT = "Firebase: Error (auth/account-exists-with-different-credential)";
+const USER_EXIST_WITH_OTHER_ACCOUNT = "Firebase: Error (auth/account-exists-with-different-credential).";
 const INCOMPETE_AUTH = "Firebase: Error (auth/incomplete).";
 const ACCOUNT_NO_VALIDATED = "Firebase: Error (auth/email-n--validated).";
 
