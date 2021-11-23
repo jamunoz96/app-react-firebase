@@ -8,10 +8,11 @@ import React, { useEffect } from "react";
 import { getErrorFirebase } from "src/utils/getErrorFirebase";
 import { AppDispatch } from "src/redux/utils/AppDispatch";
 import { clearMessages } from "src/redux/actions/AuthActions";
+import { Navigate } from "react-router-dom";
 
 const Register = () => {
   const toast = useToast();
-  const { isLoading, errorMessage } : AuthType = useSelector((state: AppStateType) => state.auth);
+  const { isLoading, errorMessage, verificationSend } : AuthType = useSelector((state: AppStateType) => state.auth);
   
   useEffect(() => {
     if(errorMessage) {
@@ -25,10 +26,24 @@ const Register = () => {
       })
       AppDispatch(clearMessages())
     }
-  }, [errorMessage]);
+
+    if(verificationSend) {
+        toast({
+          title: "Successful registration.",
+          description: "We have sent an email to your email account to confirm the registration.",
+          status: "info",
+          duration: 6000,
+          isClosable: true,
+        })
+        AppDispatch(clearMessages())
+    }
+
+  }, [errorMessage, verificationSend]);
 
   if(isLoading)
     return <Loading />
+  else if(verificationSend)
+    return <Navigate to="/auth/login" />
   else
     return <FormRegister />
 

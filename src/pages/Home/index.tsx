@@ -6,14 +6,14 @@ import ListProduct from "src/components/Product/List";
 const Home = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return <>
-            <ListProduct onOpen={onOpen} />
-            <Drawer closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} size={"md"} >
-                <DrawerContent>
-                    <DrawerCloseButton />
-                    <FormProduct onClose={onClose} />
-                </DrawerContent>
-            </Drawer>
         <Logout />
+        <ListProduct onOpen={onOpen} />
+        <Drawer closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} size={"md"} >
+            <DrawerContent>
+                <DrawerCloseButton />
+                <FormProduct onClose={onClose} />
+            </DrawerContent>
+        </Drawer>
     </>
 }
 

@@ -18,7 +18,8 @@ const initialState : AuthType = {
   user: userHydrate(),
   errorMessage: null,
   isLoaded: false,
-  isLoading: loadingHydrate()
+  isLoading: loadingHydrate(),
+  verificationSend: false
 };
 
 const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   => {
@@ -35,7 +36,8 @@ const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   
         case CLEAR_MESSAGES:
             return {
                 ...state,
-                errorMessage: null
+                errorMessage: null,
+                verificationSend: false
             }
         case AUTH_SUCCESS:
             localStorage.setItem("auth_user", JSON.stringify(action.payload.data));
@@ -44,6 +46,7 @@ const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   
                 ...state,
                 user: action.payload.data,
                 isLoading: false,
+                verificationSend: true,
                 isLoaded: true,
                 errorMessage: null
             }
@@ -54,6 +57,7 @@ const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   
                 ...state,
                 errorMessage: null,
                 user: null,
+                verificationSend: false,
                 isLoading: false,
                 isLoaded: false,
             }
@@ -63,6 +67,7 @@ const AuthReducer = (state = initialState, action: AppActionType ) : AuthType   
                 ...state,
                 errorMessage: action.payload.error,
                 user: null,
+                verificationSend: false,
                 isLoading: false,
                 isLoaded: true,
             }

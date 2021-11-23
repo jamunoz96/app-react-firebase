@@ -1,5 +1,5 @@
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, signOut, UserCredential } from "@firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signInWithRedirect, signOut, UserCredential } from "@firebase/auth";
 import { auth, providerGoogle, providerGithub } from "src/services/Firebase/providers";
 import { AuthForm } from "src/types/AuthForm";
 import { LOADING, AUTH_SUCCESS, AUTH_FAILED, AUTH_LOGOUT, CLEAR_MESSAGES } from "../reducers/AuthReducers";
@@ -34,7 +34,8 @@ export const register = (form : AuthForm) => (dispatch: AppDispatchType) => {
     dispatch(_LOADING());
     createUserWithEmailAndPassword(auth, form.email, form.password)
         .then((result : UserCredential) => {
-            dispatch(_AUTH_SUCCESS(result.user));
+            dispatch(_AUTH_SUCCESS(null));
+            sendEmailVerification(result.user);
         })
         .catch(err => {
             dispatch(_AUTH_FAILED(err.message));
@@ -45,7 +46,11 @@ export const loginWithEmail = (form : AuthForm) => (dispatch: AppDispatchType) =
     dispatch(_LOADING());
     signInWithEmailAndPassword(auth, form.email, form.password)
         .then((result : UserCredential) => {
-            dispatch(_AUTH_SUCCESS(result.user));
+            if(result.user.emailVerified)
+                dispatch(_AUTH_SUCCESS(result.user));
+            else
+                throw new Error("Firebase: Error (auth/email-n--validated).");
+                
         })
         .catch(err => {
             dispatch(_AUTH_FAILED(err.message));
