@@ -15,4 +15,8 @@ export const handleValidation = () => {
 };
 
 export const initialValues = { email: "", password: "" };
-export const handleRegister = (formValue: AuthForm) => AppDispatch(register(formValue));
+export const handleRegister = (formValue: AuthForm) => {
+  initialValues.email = formValue.email;
+  initialValues.password = formValue.password;
+  AppDispatch(register(formValue));
+}

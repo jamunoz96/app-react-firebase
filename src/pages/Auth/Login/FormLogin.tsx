@@ -25,6 +25,7 @@ import { CustomLink } from "src/themes/CustomLink";
 const FormLogin = () => {
 
   const [showPassword, setShowPassword] = useState(false);
+  console.log("render")
 
   return (
     <Fade in={true}>

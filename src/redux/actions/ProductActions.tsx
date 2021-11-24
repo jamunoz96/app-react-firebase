@@ -1,9 +1,9 @@
 
-import { QueryDocumentSnapshot, QuerySnapshot } from "@firebase/firestore";
 import { firebaseGetImagesProduct, firebaseGetProducts, firebaseSaveProduct, firebaseUploadImagesProduct } from "src/services/Product";
 import { Product } from "src/types/Product";
 import { LOADING, PRODUCT_SUCCESS, PRODUCT_FAILED, PRODUCT_SAVE } from "../reducers/ProductReducers";
 import { AppDispatchType } from "../types/AppDispatchType";
+import { AppStoreType } from "../types/AppStoreType";
 
 const _PRODUCT_SUCCESS = (data: any) => ({
     type: PRODUCT_SUCCESS,
@@ -26,21 +26,12 @@ const _LOADING = () => ({
 });
 
 
-export const loadProducts = () => (dispatch: AppDispatchType) => {
+export const loadProducts = () => (dispatch: AppDispatchType, state: AppStoreType) => {
     dispatch(_LOADING());
-    firebaseGetProducts()
-        .then((result: QuerySnapshot<any>) => {
-
-            let products: Product[] = []
-            result.forEach((doc: QueryDocumentSnapshot<Product>) => {
-                let product = doc.data()
-                product.id = doc.id;
-                product.images = [];
-                products.push(product)
-            });
-
+    const { user } = state().auth;
+    firebaseGetProducts(user.uid)
+        .then((products: Product[]) => {
             dispatch(_PRODUCT_SUCCESS(products));
-
             firebaseGetImagesProduct(products)
                 .then((result: Product[]) => {
                     dispatch(_PRODUCT_SUCCESS(result));
@@ -49,13 +40,13 @@ export const loadProducts = () => (dispatch: AppDispatchType) => {
         .catch(err => {
             dispatch(_PRODUCT_FAILED(err.message));
         })
-
 };
 
 
-export const saveProduct = (product: Product, images: any[]) => (dispatch: AppDispatchType) => {
+export const saveProduct = (product: Product, images: any[]) => (dispatch: AppDispatchType, state: AppStoreType) => {
     dispatch(_LOADING());
-    firebaseSaveProduct(product)
+    const { user }: any = state().auth;
+    firebaseSaveProduct({ ...product, user_id: user.uid })
         .then((result: any) => {
             firebaseUploadImagesProduct(result.id, images)
                 .then(() => {

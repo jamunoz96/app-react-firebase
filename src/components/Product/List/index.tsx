@@ -1,6 +1,6 @@
 import {
     Table, Tbody, Td, Th, Thead, Tr, Box,
-    Heading, Skeleton, Button, Text, Stack, Image
+    Heading, Skeleton, Button, Text, Stack, Image, ScaleFade
 } from "@chakra-ui/react"
 import { FaRegLaughSquint } from "react-icons/fa";
 import { useProduct } from "src/redux/hooks/useProduct";
@@ -25,12 +25,13 @@ const ListProduct = ({ onOpen }: PropsListProduct) => {
                     </Tr>
                 </Thead>
                 <Tbody>
+
                     {isLoading ?
                         <Tr>
                             <Td p="0" colSpan={4}>
-                                <Skeleton mt="2" height="80px" />
-                                <Skeleton mt="5" height="80px" />
-                                <Skeleton mt="5" height="80px" />
+                                <Skeleton mt="2" height="70px" />
+                                <Skeleton mt="5" height="70px" />
+                                <Skeleton mt="5" height="70px" />
                             </Td>
                         </Tr> : null
                     }
@@ -50,13 +51,16 @@ const ListProduct = ({ onOpen }: PropsListProduct) => {
                                                 <Skeleton ml="4" width="50px" height="50px" />
                                             </> :
                                             product.images.map((image: any, index: number) => {
-                                                return <Image
+                                                return <div key={index}>
+                                                    <ScaleFade delay={1} initialScale={0} in={true}>
+                                                        <Image
                                                             ml="4"
-                                                            key={index}
                                                             boxSize="50px"
                                                             objectFit="cover"
                                                             src={image}
                                                             alt="product" />
+                                                    </ScaleFade>
+                                                </div>
                                             })
 
                                         }
@@ -76,6 +80,7 @@ const ListProduct = ({ onOpen }: PropsListProduct) => {
                             </Td>
                         </Tr> : null
                     }
+
                 </Tbody>
             </Table>
         </Box>

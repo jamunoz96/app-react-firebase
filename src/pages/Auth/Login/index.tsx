@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Loading from "src/components/Commons/Loading";
 import FormLogin from "./FormLogin";
 import { useToast } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { getErrorFirebase } from "src/utils/getErrorFirebase";
 import { AppDispatch } from "src/redux/utils/AppDispatch";
 import { clearMessages } from "src/redux/actions/AuthActions";
@@ -25,7 +25,7 @@ const Login = () => {
       })
       AppDispatch(clearMessages())
     }
-  }, [errorMessage]);
+  }, [errorMessage, toast]);
 
   if(isLoading)
     return <Loading />
@@ -34,4 +34,4 @@ const Login = () => {
 
 };
 
-export default React.memo(Login);
+export default (Login);

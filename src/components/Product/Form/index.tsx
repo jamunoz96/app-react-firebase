@@ -67,7 +67,7 @@ const FormProduct = ({ onClose } : PropsFormProduct) => {
             })
         }
 
-    }, [errorMessage, saved, isLoading]);
+    }, [errorMessage, saved, isLoading, onClose, toast]);
 
     return <>
             <Stack

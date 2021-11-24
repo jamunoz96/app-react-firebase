@@ -38,7 +38,7 @@ const Register = () => {
         AppDispatch(clearMessages())
     }
 
-  }, [errorMessage, verificationSend]);
+  }, [errorMessage, verificationSend, toast]);
 
   if(isLoading)
     return <Loading />

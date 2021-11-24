@@ -15,6 +15,10 @@ export const handleValidation = () => {
 };
 
 export const initialValues = { email: "", password: "" };
-export const handleLoginWithEmail = (formValue: AuthForm) => AppDispatch(loginWithEmail(formValue));
+export const handleLoginWithEmail = (formValue: AuthForm) => {
+  initialValues.email = formValue.email;
+  initialValues.password = formValue.password;
+  AppDispatch(loginWithEmail(formValue));
+}
 export const handleLoginWithGoogle = () => AppDispatch(loginWithGoogle());
 export const handleLoginWithGithub = () => AppDispatch(loginWithGithub());
